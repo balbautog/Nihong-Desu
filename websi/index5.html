@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="5.css">
+  <link rel="icon" type="image/x-icon" href="hapon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nihongo-desu</title>
+  <script src="script.js"></script>
+</head>
+
+<body> 
+  
+  <center>
+    <h1>
+      <span class="restoname">Nihongo</span>
+      <span class="part2">- Desu</span>
+    </h1><br>
+    <div class="wrapper">
+      <div class="option">
+        <input class="input" type="radio" name="btn" value="home-table" onclick="showTable('home-table')">
+        <div class="btn">
+          <span class="span">Home</span>
+        </div>
+      </div>
+      <div class="option">
+        <input class="input" type="radio" name="btn" value="contact-table" onclick="showTable('contact-table')">
+        <div class="btn">
+          <span class="span">Contact</span>
+        </div> 
+      </div>
+      <div class="option">
+        <input class="input" type="radio" name="btn" value="menu-table" onclick="showTable('menu-table')">
+        <div class="btn">
+          <span class="span">Menu</span>
+        </div> 
+      </div>
+      
+      <div class="option">
+        <input class="input" type="radio" name="btn" value="about-table" onclick="showTable('about-table')">
+        <div class="btn">
+          <span class="span">About Us</span>
+        </div> 
+      </div>
+    </div>
+  </center>
+    <center><table id="home-table" class="table">
+      <tr>
+        <th>Home</th>
+      </tr>
+      <td class="firstline">Welcome to Nihongo-desu, your ultimate destination for authentic Japanese cuisine!<br><br>
+        
+        At Nihongo-desu, we take pride in bringing the flavors of Japan to your plate.<br>
+        With our extensive menu and dedication to quality, we offer a diverse range of traditional and modern<br>
+        Japanese dishes that will tantalize your taste buds. We are committed to delivering an exceptional<br>
+        dining experience and strive to accommodate all your culinary preferences.</td>
+      </tr>
+    </table>
+    <table id="contact-table" class="table">
+      <tr>
+        <th colspan="4" style="text-align:center;">Customer's Info</th>
+      </tr>
+      <td colspan="4"><hr></td>
+      <tr>
+        <td><label for="name">Name:</label></td>
+        <td><input type="text" id="name" name="name"></td>
+      </tr>
+      <tr>
+        <td><label for="address">Address:</label></td>
+        <td><input type="text" id="address" name="address" placeholder="e.g. Street, Barangay, City, Province"></td>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="contact-number">Contact Number:</label></td>
+        <td><input type="tel" id="contact-number" name="contact-number"></td>
+      </tr>
+      <tr>
+        <td><label for="email">Email:</label></td>
+        <td><input type="email" id="email" name="email"></td>
+      </tr>
+    </table>
+  
+    <script>
+      const nameInput = document.querySelector('#name');
+const addressInput = document.querySelector('#address');
+const contactNumberInput = document.querySelector('#contact-number');
+const emailInput = document.querySelector('#email');
+
+let name = '';
+let address = '';
+let contactNumber = '';
+let email = '';
+
+nameInput.addEventListener('input', (event) => {
+  name = event.target.value;
+});
+
+addressInput.addEventListener('input', (event) => {
+  address = event.target.value;
+});
+
+contactNumberInput.addEventListener('input', (event) => {
+  contactNumber = event.target.value;
+});
+
+emailInput.addEventListener('input', (event) => {
+  email = event.target.value;
+});
+
+    </script>
+
+
+        <table id="menu-table" class="table">
+          <tr>
+            <th colspan="4" style="text-align:center;">Menu</th>
+          </tr>
+          <tr>
+            <td colspan="4" style="text-align:center;">We serve a variety of delicious Japanese dishes.</td>
+          </tr>
+          <td colspan="4"><hr></td>
+          <tr>
+            <th>Dish Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+          </tr>
+          <tr>
+            <td>Sushi Roll</td>
+            <td>₱553</td>
+            <td>
+              <button class="decrement">-</button>
+              <span class="quantity">0</span>
+              <button class="increment">+</button>
+            </td>
+            <td class="total-price">₱0.00</td>
+          </tr>
+          <tr>
+            <td>Ramen</td>
+            <td>₱663</td>
+            <td>
+              <button class="decrement">-</button>
+              <span class="quantity">0</span>
+              <button class="increment">+</button>
+            </td>
+            <td class="total-price">₱0.00</td>
+          </tr>
+          <tr>
+            <td>Tempura</td>
+            <td>₱442</td>
+            <td>
+              <button class="decrement">-</button>
+              <span class="quantity">0</span>
+              <button class="increment">+</button>
+            </td>
+            <td class="total-price">₱0.00</td>
+          </tr>
+          <tr>
+            <td colspan="3"></td>
+            <td id="grand-total">₱0.00</td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <button id="submit-button" style="font-family: 'mySecondFont';">Submit Order</button>
+            </td>
+          </tr>
+        </table>
+        
+        
+        <script>
+          const prices = {
+            'Sushi Roll': 553,
+            'Ramen': 663,
+            'Tempura': 442
+          };
+          
+          const quantityElements = document.querySelectorAll('.quantity');
+          const incrementButtons = document.querySelectorAll('.increment');
+          const decrementButtons = document.querySelectorAll('.decrement');
+          const totalPriceElements = document.querySelectorAll('.total-price');
+          const grandTotalElement = document.querySelector('#grand-total');
+          const submitButton = document.querySelector('#submit-button');
+          
+          let grandTotal = 0;
+          
+          function updateTotalPrice(dishName, quantity) {
+            const price = prices[dishName];
+            const totalPrice = price * quantity;
+            return totalPrice;
+          }
+          
+          function updateQuantity(element, value) {
+            const dishName = element.parentNode.parentNode.childNodes[1].textContent;
+            const quantityElement = element.parentNode.querySelector('.quantity');
+            const totalPriceElement = element.parentNode.parentNode.querySelector('.total-price');
+            let quantity = parseInt(quantityElement.textContent);
+            quantity = isNaN(quantity) ? 0 : quantity;
+            const oldTotalPrice = updateTotalPrice(dishName, quantity);
+            quantity += value;
+            quantity = quantity < 0 ? 0 : quantity; // Prevent negative quantities
+            quantityElement.textContent = quantity;
+            const newTotalPrice = updateTotalPrice(dishName, quantity);
+            totalPriceElement.textContent = '₱' + newTotalPrice.toFixed(2);
+          
+            // Update grand total
+            grandTotal -= oldTotalPrice;
+            grandTotal += newTotalPrice;
+            grandTotalElement.textContent = '₱' + grandTotal.toFixed(2);
+          }
+          
+          incrementButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              updateQuantity(button, 1);
+            });
+          });
+          
+          decrementButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              updateQuantity(button, -1);
+            });
+          });
+          
+          submitButton.addEventListener('click', () => {
+            const message = `Your order total is ₱${grandTotal.toFixed(2)}. Thank you for your order!`;
+            alert(message);
+            window.location.reload();
+
+          });
+        </script>
+    
+    <table id="about-table" class="table" style="display: none;">
+      <tr>
+        <th>About Us</th>
+      </tr>
+      <tr>
+        <td class="firstline">Providing the Taste of authentic <span class="part2">Japanese Cuisine</span> at your local place ! ! ! </td>
+      </tr>
+      <td colspan="4"><hr></td>
+      
+      <tr>
+        <th>You Can Contact us via:</th>
+      </tr>
+      <tr>
+      <td class="firstline">
+        Email:<span class="part2"> nihongodesu19@gmail.com</span><br>
+        Contact Number: <span class="part2">09XXXXXXXXX</span><br>
+        Tel.: <span class="part2">(0XX)-XXX-XXXX</span><br>  
+      </td> 
+      </tr>
+      <td colspan="4"><hr></td>
+      <tr>
+        <th>Located at:</th>
+      </tr>
+      <tr>
+        <td class="firstline">
+          <span class="part2"> Brgy.</span> Poblacion, Mabini, Batangas  
+        </td> 
+        </tr>
+    </table>
+  
+</body>
+</html>
